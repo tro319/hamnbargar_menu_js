@@ -1,0 +1,389 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* ページ全体に、フォントスタイルを適用。
+===================================== */
+
+body {
+    font-family: "Noto Serif JP", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    height: 100vh;
+}
+
+
+/* header
+==================================== */
+
+#header {
+    position: fixed;
+    width: 100%;
+    background-color: #555;
+    z-index: 2;
+}
+
+/* header-title 右下のサブタイトルの、設定。
+======================================= */
+
+.header-title .sub-title {
+    font-size: 12px;
+}
+
+
+/* header ハンバーガーメニューxボタンが押された時のスタイル設定。
+================================================== */
+
+#header .UpMove {
+    animation: UpAnime 0.5s forwards;
+}
+
+@keyframes UpAnime {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    to {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+}
+
+
+#header .DownMove {
+    animation: DownAnime 0.5s forwards;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+@keyframes DownAnime {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* header リストの設定
+======================================= */
+
+.header-list {
+    display: flex;
+    margin-top: 45px;
+}
+
+
+/* header リストの設定、多階層にした時の2階層目の設定
+======================================= */
+
+.sub-list {
+    display: block;
+}
+
+/* header リストの設定 続き。
+======================================= */
+
+.header-list li {
+    position: relative;
+}
+
+.header-list li a {
+    display: block;
+    transition: all .3s;
+}
+
+.header-list li a:hover {
+    opacity: 0.7;
+}
+
+
+/* main
+===================================== */
+
+.container {
+    max-width: 1400px;
+    padding: 20px;
+    z-index: 1;
+}
+
+#main-top {
+    padding-top: 200px;
+}
+
+.main-img {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.main-img.active {
+    opacity: 1;
+}
+
+.main-img img {
+    border-radius: 7px;
+}
+
+#main4 .main-img {
+    margin-bottom: 0;
+}
+
+
+/* mainスクロール促す矢印設置
+==================================== */
+
+.arrow-inner {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.arrow-inner.delete {
+    opacity: 0;
+}
+
+.arrow {
+    color: rgb(255, 94, 94);
+    animation: bounce 1s infinite;
+}
+
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* footer
+======================================= */
+
+.footer a {
+    background-color: rgb(68, 118, 255);
+    border-radius: 7px;
+}
+
+.footer .copy {
+    margin-top: 30px;
+    font-size: 10px;
+}
+
+
+
+/* スマホ画面の設定。
+==================================== */
+
+@media screen and (max-width: 768px) {
+    a.top-button {
+        scale: .7;
+        right: 0;
+    }
+
+    /* header リストの設定(スマホ用)
+==================================== */
+
+    .header-list {
+        display: none;
+        height: 0;
+        overflow: hidden; /* スライドアップのアニメーションをスムーズにする */
+        animation: fadeIn1 0.5s;
+        margin-top: 80px;
+    }
+
+    .header-list.hidden {
+        opacity: 0;
+        height: 0;
+        animation: fadeIn2 0.5s;
+      }
+      .header-list.visible {
+        display: block;
+        opacity: 1;
+        height: auto;
+        animation: fadeIn1 0.5s;
+      }
+
+
+      @keyframes fadeIn1 {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn2 {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+      }
+
+    /* header リストの設定(スマホ用、ハンバーガーメニューの三本線の設定)
+    ==================================== */
+
+    .open-btn1 span {
+        display: inline-block;
+        transition: all 0.4s;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        width: 26px;
+        height: 3px;
+        border-radius: 2px;
+        background-color: rgb(255, 86, 86);
+        transform: translateY(-50%);
+    }
+
+    .open-btn1 span:nth-of-type(1) {
+        top: -30%;
+    }
+
+    .open-btn1 span:nth-of-type(2) {
+        top: 0%;
+    }
+
+    .open-btn1 span:nth-of-type(3) {
+        top: 30%;
+    }
+
+    /* header リストの設定(スマホ用、ハンバーガーメニューの三本線の設定、ハンバーガーメニューが開いているとき)。
+    ========================================= */
+
+    .open-btn1.active span:nth-of-type(1) {
+        top: 0%;
+        right: 0;
+        transform: translateY(-50%) rotate(-45deg);
+        width: 26px;
+    }
+
+    .open-btn1.active span:nth-of-type(2) {
+        opacity: 0;
+    }
+
+    .open-btn1.active span:nth-of-type(3) {
+        top: 0%;
+        right: 0;
+        transform: translateY(-50%) rotate(45deg);
+        width: 26px;
+    }
+
+
+    /* header リストの設定(スマホ用、ハンバーガーメニューの三本線全体の設定)。
+    ========================================= */
+
+    .open-btn1 {
+        position: fixed;
+        z-index: 3;
+        top: 45px;
+        right: 15px;
+        cursor: pointer;
+        width: 44px;
+        height: 44px;
+        border-radius: 0 0 0 7px;
+    }
+
+    #header>a {
+        display: none;
+    }
+
+
+
+    .header-list li a {
+        border-bottom: 1px solid #ccc;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.5s;
+        margin-bottom: 20px;
+    }
+
+    .header-list.visible li a {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+    /* main スクロール関係微調整
+    ============================= */
+
+    .main-img {
+        margin-bottom: 80px;
+    }
+
+
+
+    /* score.php
+    ============================== */
+
+    .table-sc-container {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .score-tb {
+        width: 100%;
+        min-width: 600px;
+    }
+
+    .score-tb th, .score-tb td {
+        min-width: 80px;
+        white-space: nowrap;
+    }
+
+
+}
+
+
+
+
+/* events
+============================ */
+
+
+
+@keyframes fadeIn-sub {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* score.php info.php、 headerタグ内以外は、htmlに直でスタイル書き。
+============================ */
+
+
+
+/* info.php
+============================ */
+
+
+
+
+/* score.php
+============================ */
+
+
+
+
